@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="928.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="275.0" text="Marcos' CPU SCHEDULER" textFill="#00d049">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="73.0" prefHeight="28.0" prefWidth="176.0" text="Number of Processes" textFill="#00d049">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="processBox" layoutX="190.0" layoutY="76.0" onAction="#setProcessesVisible" prefHeight="25.0" prefWidth="40.0" promptText="1" />
+      <Button fx:id="calculateBtn" layoutX="753.0" layoutY="265.0" mnemonicParsing="false" onAction="#calculate" prefHeight="25.0" prefWidth="127.0" text="calculate" />
+      <Button fx:id="ramndomBtn" layoutX="753.0" layoutY="184.0" mnemonicParsing="false" onAction="#randomBurst" prefHeight="25.0" prefWidth="127.0" text="random burst times" />
+      <HBox alignment="BOTTOM_CENTER" layoutX="32.0" layoutY="434.0" prefHeight="70.0" prefWidth="657.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <GridPane gridLinesVisible="true" layoutX="67.0" layoutY="562.0" prefHeight="64.0" prefWidth="657.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="gantt1" prefHeight="17.0" prefWidth="82.0" text="p1" textFill="#c90000" />
+            <Label fx:id="gantt2" prefHeight="17.0" prefWidth="68.0" text="p2" textFill="#c90404" GridPane.columnIndex="1" />
+            <Label fx:id="gantt3" prefHeight="17.0" prefWidth="98.0" text="p3" textFill="#c60707" GridPane.columnIndex="2" />
+            <Label fx:id="gantt4" prefHeight="17.0" prefWidth="69.0" text="p4" textFill="#b20202" GridPane.columnIndex="3" />
+            <Label fx:id="gantt5" prefHeight="17.0" prefWidth="70.0" text="p5" textFill="#bc0404" GridPane.columnIndex="4" />
+            <Label fx:id="gantt6" prefHeight="17.0" prefWidth="76.0" text="p6" textFill="#bc0404" GridPane.columnIndex="5" />
+            <Label fx:id="gantt7" prefHeight="17.0" prefWidth="76.0" text="p7" textFill="#ae0707" GridPane.columnIndex="6" />
+            <Label fx:id="gantt8" prefHeight="17.0" prefWidth="78.0" text="p8" textFill="#a40202" GridPane.columnIndex="7" />
+            <Label fx:id="gantt9" prefHeight="17.0" prefWidth="73.0" text="p9" textFill="#bc0404" GridPane.columnIndex="8" />
+            <Label fx:id="gantt10" prefHeight="17.0" prefWidth="68.0" text="p10" textFill="#b90505" GridPane.columnIndex="9" />
+         </children>
+      </GridPane>
+      <Label fx:id="currentProcess" layoutX="263.0" layoutY="74.0" prefHeight="28.0" prefWidth="190.0" text="First Come FIrst Served" textFill="#00d049">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="32.0" layoutY="115.0" prefHeight="400.0" prefWidth="416.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="0.0" prefWidth="82.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="36.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="153.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="132.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="p1" prefHeight="17.0" prefWidth="82.0" text="p1" textFill="#c90000">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p2" prefHeight="17.0" prefWidth="68.0" text="p2" textFill="#c90404" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p3" prefHeight="17.0" prefWidth="98.0" text="p3" textFill="#c60707" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p4" prefHeight="17.0" prefWidth="69.0" text="p4" textFill="#b20202" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p5" prefHeight="17.0" prefWidth="70.0" text="p5" textFill="#bc0404" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p6" prefHeight="17.0" prefWidth="76.0" text="p6" textFill="#bc0404" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p7" prefHeight="17.0" prefWidth="76.0" text="p7" textFill="#ae0707" GridPane.rowIndex="6">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p8" prefHeight="17.0" prefWidth="78.0" text="p8" textFill="#a40202" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p9" prefHeight="17.0" prefWidth="73.0" text="p9" textFill="#bc0404" GridPane.rowIndex="8">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="p10" prefHeight="17.0" prefWidth="68.0" text="p10" textFill="#b90505" GridPane.rowIndex="9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="text1" prefHeight="25.0" prefWidth="79.0" GridPane.columnIndex="1" />
+            <TextField fx:id="text2" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="text3" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="text4" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="text5" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="text6" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="text7" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="text8" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="text9" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="text10" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="averageLabel" prefHeight="23.0" prefWidth="171.0" text="Average" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="10">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel" prefHeight="17.0" prefWidth="144.0" text="T/A: " textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="10">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="waitLabel1" prefHeight="23.0" prefWidth="171.0" text="Average" textFill="#eb1212" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel2" prefHeight="23.0" prefWidth="126.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel3" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel4" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel5" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel6" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel7" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel8" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel9" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="waitLabel10" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="taLabel1" prefHeight="17.0" prefWidth="144.0" text="T/A: " textFill="#e12d2d" GridPane.columnIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel2" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel3" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel4" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel5" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel6" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel7" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel8" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel9" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="8">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="taLabel10" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="9">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+         </children>
+      </GridPane>
+      <ComboBox fx:id="comboBox" layoutX="464.0" layoutY="76.0" onAction="#changeWindow" prefWidth="150.0" />
+   </children>
+</AnchorPane>
