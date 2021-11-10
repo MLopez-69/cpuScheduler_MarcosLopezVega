@@ -213,6 +213,7 @@ public class mainController implements Initializable{
 	
 	@FXML
     void calculate(ActionEvent event) {
+		fifo.clear();
 		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
@@ -247,6 +248,8 @@ public class mainController implements Initializable{
 			setRandomText(count);
 			count++;
 		}
+		averageLabel.setText("Average:");
+		taLabel.setText("T/A:");
     }
     
     @FXML
@@ -376,6 +379,8 @@ public class mainController implements Initializable{
     
     		text10.clear(); gantt10.setText("");
     		waitLabel10.setText("0"); taLabel10.setText("0");
+    		averageLabel.setText("Average:");
+    		taLabel.setText("T/A:");
     	}
     
 

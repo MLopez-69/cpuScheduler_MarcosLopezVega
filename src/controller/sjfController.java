@@ -193,7 +193,7 @@ public class sjfController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		sjf=new shortestJobFirst(30);//set to 30 to allow hashing structure to hash duplicates
+		sjf=new shortestJobFirst(20);//set to 20 to allow hashing structure to hash duplicates
 		initBoxes();
 		setLabelsFalse();
 		
@@ -220,8 +220,8 @@ public class sjfController implements Initializable{
 		count=1;
 		
 		sjf.setTimes();
-		int processCount=1; //keeps track of the processes for the Gantt chart
-		maxInt=sjf.getMax(); //sets maxInt to the max Burst time
+		maxInt=sjf.getProcessCount(); //sets maxInt to the max Burst time
+		
 		while(count<=maxInt) {
 			if(sjf.getCell(count)!=null) {
 			setWaitTimeLabel
@@ -229,11 +229,8 @@ public class sjfController implements Initializable{
 			
 			setTALabel
 			(sjf.getCell(count).getProcess().getName(),sjf.getCell(count).getTaTime());
-			
-			setGantt(processCount,sjf.getCell(count).getProcess().getName());
-			processCount++;
+			setGantt(sjf.getCell(count).getPriority(),sjf.getCell(count).getProcess().getName());
 			}
-			
 			
 			count++;
 		}
@@ -251,6 +248,8 @@ public class sjfController implements Initializable{
 			setRandomText(count);
 			count++;
 		}
+		averageLabel.setText("Average:");
+		taLabel.setText("T/A:");
     }
     
     @FXML
@@ -367,6 +366,8 @@ public class sjfController implements Initializable{
 
 		text10.clear();
 		waitLabel10.setText("0"); taLabel10.setText("0");
+		averageLabel.setText("Average:");
+		taLabel.setText("T/A:");
 		clearGantt();
 	}
     
@@ -479,6 +480,6 @@ public class sjfController implements Initializable{
     	case 10:gantt10.setText(label);break;
     	}	
     }
-    
+	
 	
 }

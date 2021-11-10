@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 
-public class shortestJobFirst implements calculations, Comparable{
+public class shortestJobFirst implements calculations{
 	private HashMap<Integer,ganttCalculations> map;
 	private int max;
 	private int processCount; //made due to realization that the program deadlocks
@@ -19,12 +19,11 @@ public class shortestJobFirst implements calculations, Comparable{
 	
 	public void addCell(process process) {
 		ganttCalculations newCell= new ganttCalculations(process);
-//		while(getCell(processCount)!=null) {
-//			processCount++;
-//		}
-		newCell.setPriority(processCount);	
+		//newCell.setPriority(processCount);	
+		
 		setMaxIfLarger(newCell.getProcess().getBurstTime());
 		map.put(processCount, newCell);
+		processCount++;
 	}
 	
 	
@@ -68,27 +67,35 @@ public class shortestJobFirst implements calculations, Comparable{
 	@Override
 	public void setTimes() {
 		int previousTATime=0;
+		int programCounter=1;// this keeps track of the processes
+		int newPriority=1; //uses the built in priority to help set these things
 		while(count<=max) {
-//			int programCounter=1;// this keeps track of the 
-//			 
-//			 while(count<max) {
-//				 
-//			 }
-			ganttCalculations newCell=getCell(count);
-			if(newCell!=null) {
+				
+			 while(programCounter<processCount) {
+				 
+				 ganttCalculations newCell=getCell(programCounter);
+			if(newCell.getProcess().getBurstTime()==count) {
 				newCell.setWaitTime(previousTATime);
-				int burstTime=newCell.getProcess().getBurstTime();
-				previousTATime=previousTATime+burstTime;
+				previousTATime+=newCell.getProcess().getBurstTime();
 				
 				newCell.setTaTime(previousTATime);
-				System.out.println(newCell);
-				map.replace(burstTime, newCell); //replaces old value at index with new value
+				newCell.setPriority(newPriority);
 				
+				System.out.println(newCell);
+				map.replace(programCounter, newCell); //replaces old value at index with new value
+				 newPriority++;
 			}
 			
+			programCounter++;
+				 
+			 }
+			
+			 programCounter=1;
 			count++;
 		}
+		
 		count=0;
+		System.out.println();
 		
 	}
 	
@@ -102,14 +109,19 @@ public class shortestJobFirst implements calculations, Comparable{
 		return max;
 	}
 	
+	
+	
 	public void clear() {
 		map.clear();
+		max=0;
+		count=0;
+		processCount=1;
 	}
 
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getProcessCount() {
+		return processCount;
 	}
+	
+	
 
 }

@@ -61,8 +61,11 @@ public class ganttCalculations {
 
 	@Override
 	public String toString() {
-		return "ganttCalculations [waitTime=" + waitTime + ", taTime=" + taTime + ", process=" + process + "]";
+		return "ganttCalculations [waitTime=" + waitTime + ", taTime=" + taTime + ", priority=" + priority
+				+ ", process=" + process + "]";
 	}
+
+	
 	
 	
 

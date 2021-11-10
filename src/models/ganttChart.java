@@ -5,10 +5,10 @@ import java.util.LinkedList;
 public class ganttChart {
 	
 	private LinkedList<ganttCalculations> chart;
-	//private ganttCalculations[] chart;
 	
 	public ganttChart() {
 		chart=new LinkedList<ganttCalculations>();
+		
 		
 	}
 	
@@ -35,5 +35,8 @@ public class ganttChart {
 		addCell(getCell());
 	}
 	
+	public void clear() {
+		chart.clear();
+	}
 
 }
