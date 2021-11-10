@@ -4,27 +4,29 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 
-public class shortestJobFirst implements calculations{
+public class shortestJobFirst implements calculations, Comparable{
 	private HashMap<Integer,ganttCalculations> map;
 	private int max;
+	private int processCount; //made due to realization that the program deadlocks
 	int count;
 
 	public shortestJobFirst(int maxInt) {
 		map=new HashMap<Integer,ganttCalculations>(maxInt);
 		max=0;
 		count=0;
+		processCount=1;
 	}
 	
 	public void addCell(process process) {
 		ganttCalculations newCell= new ganttCalculations(process);
+//		while(getCell(processCount)!=null) {
+//			processCount++;
+//		}
+		newCell.setPriority(processCount);	
 		setMaxIfLarger(newCell.getProcess().getBurstTime());
-		map.put(newCell.getProcess().getBurstTime(), newCell);
+		map.put(processCount, newCell);
 	}
 	
-	public void addCell(ganttCalculations newCell) {
-		setMaxIfLarger(newCell.getProcess().getBurstTime());
-		map.put(newCell.getProcess().getBurstTime(), newCell);
-	}
 	
 	public ganttCalculations getCell(int burstTime) {
 		return map.get(burstTime);
@@ -67,6 +69,11 @@ public class shortestJobFirst implements calculations{
 	public void setTimes() {
 		int previousTATime=0;
 		while(count<=max) {
+//			int programCounter=1;// this keeps track of the 
+//			 
+//			 while(count<max) {
+//				 
+//			 }
 			ganttCalculations newCell=getCell(count);
 			if(newCell!=null) {
 				newCell.setWaitTime(previousTATime);
@@ -95,5 +102,14 @@ public class shortestJobFirst implements calculations{
 		return max;
 	}
 	
+	public void clear() {
+		map.clear();
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

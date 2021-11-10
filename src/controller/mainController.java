@@ -30,8 +30,6 @@ public class mainController implements Initializable{
 	
 	private FirstInFirstServed fifo;
 	
-	private ganttChart ganttChartt=new ganttChart();	
-	
     @FXML
     private ComboBox<Integer> processBox;
 
@@ -215,6 +213,7 @@ public class mainController implements Initializable{
 	
 	@FXML
     void calculate(ActionEvent event) {
+		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
 		while(count<=maxInt) {
@@ -230,6 +229,7 @@ public class mainController implements Initializable{
 		while(count<=maxInt) {
 			setWaitTimeLabel(count,fifo.getWaitTime());
 			setTALabel(count,fifo.getTATime());
+			setGantt(count);
 			fifo.next();
 			count++;
 		}
@@ -333,34 +333,48 @@ public class mainController implements Initializable{
     	
     }
     
+    public void clearGantt() {
+    	gantt1.setText("");
+    	gantt2.setText("");
+    	gantt3.setText("");
+    	gantt4.setText("");
+    	gantt5.setText("");
+    	gantt6.setText("");
+    	gantt7.setText("");
+    	gantt8.setText("");
+    	gantt9.setText("");
+    	gantt10.setText("");
+    }
+    
     public void clearLabels() {
-    		text1.clear();
+    		text1.clear(); gantt1.setText("");
     		waitLabel1.setText("0"); taLabel1.setText("0");
 
-    		text2.clear();
+    		text2.clear(); gantt2.setText("");
     		waitLabel2.setText("0"); taLabel2.setText("0");
 
-    		text3.clear();
+    		text3.clear(); gantt3.setText("");
     		waitLabel3.setText("0"); taLabel3.setText("0");
 
-    		text4.clear();
+    		text4.clear(); gantt4.setText("");
     		waitLabel4.setText("0"); taLabel4.setText("0");
-    		text5.clear();
+    		
+    		text5.clear(); gantt5.setText("");
     		waitLabel5.setText("0"); taLabel5.setText("0");
  
-    		text6.clear();
+    		text6.clear(); gantt6.setText("");
     		waitLabel6.setText("0"); taLabel6.setText("0");
     
-    		text7.clear();
+    		text7.clear(); gantt7.setText("");
     		waitLabel7.setText("0"); taLabel7.setText("0");
  
-    		text8.clear();
+    		text8.clear(); gantt8.setText("");
     		waitLabel8.setText("0"); taLabel8.setText("0");
  
-    		text9.clear();
+    		text9.clear(); gantt9.setText("");
     		waitLabel9.setText("0"); taLabel9.setText("0");
     
-    		text10.clear();
+    		text10.clear(); gantt10.setText("");
     		waitLabel10.setText("0"); taLabel10.setText("0");
     	}
     
@@ -446,6 +460,19 @@ public class mainController implements Initializable{
     	}	
     }
     
-	
+	public void setGantt(int labelNumber) {
+    	switch(labelNumber) {
+    	case 1:gantt1.setText("p1");break;
+    	case 2:gantt2.setText("p2");break;
+    	case 3:gantt3.setText("p3");break;
+    	case 4:gantt4.setText("p4");break;
+    	case 5:gantt5.setText("p5");break;
+    	case 6:gantt6.setText("p6");break;
+    	case 7:gantt7.setText("p7");break;
+    	case 8:gantt8.setText("p8");break;
+    	case 9:gantt9.setText("p9");break;
+    	case 10:gantt10.setText("p10");break;
+    	}	
+    }
 
 }

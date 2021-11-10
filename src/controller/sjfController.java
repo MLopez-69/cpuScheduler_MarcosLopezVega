@@ -23,7 +23,6 @@ import models.shortestJobFirst;
 public class sjfController implements Initializable{
 	private shortestJobFirst sjf;
 	
-	private ganttChart ganttChartt=new ganttChart();	
 	
     @FXML
     private ComboBox<Integer> processBox;
@@ -194,7 +193,7 @@ public class sjfController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		sjf=new shortestJobFirst(10);
+		sjf=new shortestJobFirst(30);//set to 30 to allow hashing structure to hash duplicates
 		initBoxes();
 		setLabelsFalse();
 		
@@ -208,8 +207,10 @@ public class sjfController implements Initializable{
 	
 	@FXML
     void calculate(ActionEvent event) {
+		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
+		sjf.clear();
 		while(count<=maxInt) {
 			process newProcess= 
 			new process(getLabelText(count),getText(count));
@@ -219,6 +220,7 @@ public class sjfController implements Initializable{
 		count=1;
 		
 		sjf.setTimes();
+		int processCount=1; //keeps track of the processes for the Gantt chart
 		maxInt=sjf.getMax(); //sets maxInt to the max Burst time
 		while(count<=maxInt) {
 			if(sjf.getCell(count)!=null) {
@@ -227,7 +229,12 @@ public class sjfController implements Initializable{
 			
 			setTALabel
 			(sjf.getCell(count).getProcess().getName(),sjf.getCell(count).getTaTime());
+			
+			setGantt(processCount,sjf.getCell(count).getProcess().getName());
+			processCount++;
 			}
+			
+			
 			count++;
 		}
 		averageLabel.setText
@@ -331,35 +338,50 @@ public class sjfController implements Initializable{
     }
     
     public void clearLabels() {
-    		text1.clear();
-    		waitLabel1.setText("0"); taLabel1.setText("0");
+		text1.clear();
+		waitLabel1.setText("0"); taLabel1.setText("0");
 
-    		text2.clear();
-    		waitLabel2.setText("0"); taLabel2.setText("0");
+		text2.clear(); 
+		waitLabel2.setText("0"); taLabel2.setText("0");
 
-    		text3.clear();
-    		waitLabel3.setText("0"); taLabel3.setText("0");
+		text3.clear(); 
+		waitLabel3.setText("0"); taLabel3.setText("0");
 
-    		text4.clear();
-    		waitLabel4.setText("0"); taLabel4.setText("0");
-    		text5.clear();
-    		waitLabel5.setText("0"); taLabel5.setText("0");
- 
-    		text6.clear();
-    		waitLabel6.setText("0"); taLabel6.setText("0");
+		text4.clear(); 
+		waitLabel4.setText("0"); taLabel4.setText("0");
+		
+		text5.clear(); 
+		waitLabel5.setText("0"); taLabel5.setText("0");
+
+		text6.clear(); 
+		waitLabel6.setText("0"); taLabel6.setText("0");
+
+		text7.clear(); 
+		waitLabel7.setText("0"); taLabel7.setText("0");
+
+		text8.clear(); 
+		waitLabel8.setText("0"); taLabel8.setText("0");
+
+		text9.clear(); 
+		waitLabel9.setText("0"); taLabel9.setText("0");
+
+		text10.clear();
+		waitLabel10.setText("0"); taLabel10.setText("0");
+		clearGantt();
+	}
     
-    		text7.clear();
-    		waitLabel7.setText("0"); taLabel7.setText("0");
- 
-    		text8.clear();
-    		waitLabel8.setText("0"); taLabel8.setText("0");
- 
-    		text9.clear();
-    		waitLabel9.setText("0"); taLabel9.setText("0");
-    
-    		text10.clear();
-    		waitLabel10.setText("0"); taLabel10.setText("0");
-    	}
+    public void clearGantt() {
+    	gantt1.setText("");
+    	gantt2.setText("");
+    	gantt3.setText("");
+    	gantt4.setText("");
+    	gantt5.setText("");
+    	gantt6.setText("");
+    	gantt7.setText("");
+    	gantt8.setText("");
+    	gantt9.setText("");
+    	gantt10.setText("");
+    }
     
 
 	public String getLabelText(int labelNumber) {
@@ -440,6 +462,21 @@ public class sjfController implements Initializable{
     	case "p8":taLabel8.setText(newString);break;
     	case "p9":taLabel9.setText(newString);break;
     	case "p10":taLabel10.setText(newString);break;
+    	}	
+    }
+	
+	public void setGantt(int labelNumber,String label) {
+    	switch(labelNumber) {
+    	case 1:gantt1.setText(label);break;
+    	case 2:gantt2.setText(label);break;
+    	case 3:gantt3.setText(label);break;
+    	case 4:gantt4.setText(label);break;
+    	case 5:gantt5.setText(label);break;
+    	case 6:gantt6.setText(label);break;
+    	case 7:gantt7.setText(label);break;
+    	case 8:gantt8.setText(label);break;
+    	case 9:gantt9.setText(label);break;
+    	case 10:gantt10.setText(label);break;
     	}	
     }
     

@@ -3,18 +3,27 @@ package models;
 public class ganttCalculations {
 	private int waitTime;
 	private int taTime;
+	private int priority;
 	private process process;
 	
 	public ganttCalculations(process process) {
 		this.process=process;
 		waitTime=0;
 		taTime=0;
+		priority=0;
 	}
 	
 	public ganttCalculations(process process, int waitTime,int taTime) {
 		this.process=process;
 		this.waitTime=waitTime;
 		this.taTime=taTime;
+	}
+	
+	public ganttCalculations(process process, int waitTime,int taTime, int priority) {
+		this.process=process;
+		this.waitTime=waitTime;
+		this.taTime=taTime;
+		this.priority=priority;
 	}
 
 	public int getWaitTime() {
@@ -39,6 +48,15 @@ public class ganttCalculations {
 
 	public void setProcess(process process) {
 		this.process = process;
+	}
+	
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 
 	@Override

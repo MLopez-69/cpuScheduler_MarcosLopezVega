@@ -1,13 +1,9 @@
 package models;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class FirstInFirstServed extends ganttChart implements calculations{
 	private int max;
 	int count;
-	
-	
 	
 	public FirstInFirstServed(int maxInt) {
 		super();
@@ -61,7 +57,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 			}else {
 				newCell.setWaitTime(previousTATime);
 				int burstTime=newCell.getProcess().getBurstTime();
-				previousTATime=burstTime+previousTATime;
+				previousTATime+=burstTime;
 				newCell.setTaTime(previousTATime);
 				System.out.println(newCell);
 				

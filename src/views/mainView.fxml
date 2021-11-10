@@ -49,16 +49,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="gantt1" prefHeight="17.0" prefWidth="82.0" text="p1" textFill="#c90000" />
-            <Label fx:id="gantt2" prefHeight="17.0" prefWidth="68.0" text="p2" textFill="#c90404" GridPane.columnIndex="1" />
-            <Label fx:id="gantt3" prefHeight="17.0" prefWidth="98.0" text="p3" textFill="#c60707" GridPane.columnIndex="2" />
-            <Label fx:id="gantt4" prefHeight="17.0" prefWidth="69.0" text="p4" textFill="#b20202" GridPane.columnIndex="3" />
-            <Label fx:id="gantt5" prefHeight="17.0" prefWidth="70.0" text="p5" textFill="#bc0404" GridPane.columnIndex="4" />
-            <Label fx:id="gantt6" prefHeight="17.0" prefWidth="76.0" text="p6" textFill="#bc0404" GridPane.columnIndex="5" />
-            <Label fx:id="gantt7" prefHeight="17.0" prefWidth="76.0" text="p7" textFill="#ae0707" GridPane.columnIndex="6" />
-            <Label fx:id="gantt8" prefHeight="17.0" prefWidth="78.0" text="p8" textFill="#a40202" GridPane.columnIndex="7" />
-            <Label fx:id="gantt9" prefHeight="17.0" prefWidth="73.0" text="p9" textFill="#bc0404" GridPane.columnIndex="8" />
-            <Label fx:id="gantt10" prefHeight="17.0" prefWidth="68.0" text="p10" textFill="#b90505" GridPane.columnIndex="9" />
+            <Label fx:id="gantt1" prefHeight="17.0" prefWidth="82.0" textFill="#c90000" />
+            <Label fx:id="gantt2" prefHeight="17.0" prefWidth="68.0" textFill="#c90404" GridPane.columnIndex="1" />
+            <Label fx:id="gantt3" prefHeight="17.0" prefWidth="98.0" textFill="#c60707" GridPane.columnIndex="2" />
+            <Label fx:id="gantt4" prefHeight="17.0" prefWidth="69.0" textFill="#b20202" GridPane.columnIndex="3" />
+            <Label fx:id="gantt5" prefHeight="17.0" prefWidth="70.0" textFill="#bc0404" GridPane.columnIndex="4" />
+            <Label fx:id="gantt6" prefHeight="17.0" prefWidth="76.0" textFill="#bc0404" GridPane.columnIndex="5" />
+            <Label fx:id="gantt7" prefHeight="17.0" prefWidth="76.0" textFill="#ae0707" GridPane.columnIndex="6" />
+            <Label fx:id="gantt8" prefHeight="17.0" prefWidth="78.0" textFill="#a40202" GridPane.columnIndex="7" />
+            <Label fx:id="gantt9" prefHeight="17.0" prefWidth="73.0" textFill="#bc0404" GridPane.columnIndex="8" />
+            <Label fx:id="gantt10" prefHeight="17.0" prefWidth="68.0" textFill="#b90505" GridPane.columnIndex="9" />
          </children>
       </GridPane>
       <Label fx:id="currentProcess" layoutX="263.0" layoutY="74.0" prefHeight="28.0" prefWidth="190.0" text="First Come FIrst Served" textFill="#00d049">
@@ -155,7 +155,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="waitLabel1" prefHeight="23.0" prefWidth="171.0" text="Average" textFill="#eb1212" GridPane.columnIndex="2">
+            <Label fx:id="waitLabel1" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -235,7 +235,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="taLabel1" prefHeight="17.0" prefWidth="144.0" text="T/A: " textFill="#e12d2d" GridPane.columnIndex="3">
+            <Label fx:id="taLabel1" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3">
                <font>
                   <Font size="14.0" />
                </font></Label>
