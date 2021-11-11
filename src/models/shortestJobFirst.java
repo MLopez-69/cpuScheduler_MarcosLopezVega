@@ -1,7 +1,6 @@
 package models;
 
 import java.util.HashMap;
-import java.util.TreeMap;
 
 
 public class shortestJobFirst implements calculations{
