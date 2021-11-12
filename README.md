@@ -71,4 +71,13 @@ does is that it looks for the priority of each mapped element, then it matches i
 
 ##Priority Algorithm
 
-for this lgorithm, i realized that the previous fix i found would have never
+for this lgorithm, i Initially wanted it to be another map structure, however i decided against that after seeing the issues that arose with using A map for the SJF algorithm.
+So i decided that going back to a linked list would have been ideal. Ultimately, this would prove to be better, because it gave me the freedom to implement what i learned with the previous algorithm without having to worry about changing another structure.
+When i had to calculate wait time and turnaround time, what i did was i used the same code as the first algorithm, however i had to make a few changes as this algorithm had
+different variables in the new structure, which is ideally what you'd want. 
+
+Process count now held the max nu,mber of processes, priorityMax now held the maximum priorityvalue. One important thing to note here is that the way my priority algorithm works is that it sets the lowest number as the highest priority. so the lower the number, the higher the priority. 
+
+The setTimes method for this structure is where the majority of the changes lies. The setTimes method sets the wait times and turnaround times by having two wile loops, like in the previous example. The outer loop runs through the numbers between the lowest rpiority to the highest whereas the inner loop iterates through the linked list, setting
+the times to an element if that elements priority corresponds with the current priority count. This not only serves to set the times, but it also accounts for duplicates
+which would otherwise break the program.
