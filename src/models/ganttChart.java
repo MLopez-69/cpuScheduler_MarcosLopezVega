@@ -4,21 +4,20 @@ import java.util.LinkedList;
 
 public class ganttChart {
 	
-	private LinkedList<ganttCalculations> chart;
+	private LinkedList<ganttCell> chart;
 	
 	public ganttChart() {
-		chart=new LinkedList<ganttCalculations>();
-		
+		chart=new LinkedList<ganttCell>();
 		
 	}
 	
-	public void addCell(ganttCalculations newCell) {
+	public void addCell(ganttCell newCell) {
 		chart.add(newCell);
 		
 	}
 	
-	public ganttCalculations getCell() {
-		ganttCalculations cell=chart.pop();
+	public ganttCell getCell() {
+		ganttCell cell=chart.pop();
 		return cell;
 	}
 	
@@ -31,6 +30,12 @@ public class ganttChart {
 		int taTime=chart.peek().getTaTime();
 		return taTime;
 	}
+	
+	public int getPriority() {
+		int priority=chart.peek().getPriority();
+		return priority;
+	}
+	
 	public void next() {
 		addCell(getCell());
 	}

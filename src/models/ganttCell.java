@@ -1,25 +1,25 @@
 package models;
 
-public class ganttCalculations {
+public class ganttCell{
 	private int waitTime;
 	private int taTime;
 	private int priority;
 	private process process;
 	
-	public ganttCalculations(process process) {
+	public ganttCell(process process) {
 		this.process=process;
 		waitTime=0;
 		taTime=0;
 		priority=0;
 	}
 	
-	public ganttCalculations(process process, int waitTime,int taTime) {
+	public ganttCell(process process, int waitTime,int taTime) {
 		this.process=process;
 		this.waitTime=waitTime;
 		this.taTime=taTime;
 	}
 	
-	public ganttCalculations(process process, int waitTime,int taTime, int priority) {
+	public ganttCell(process process, int waitTime,int taTime, int priority) {
 		this.process=process;
 		this.waitTime=waitTime;
 		this.taTime=taTime;

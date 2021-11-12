@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="928.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.sjfController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: #142F43;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.priorityController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="275.0" text="Marcos' CPU SCHEDULER" textFill="#00d049">
          <font>
@@ -32,7 +32,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <GridPane gridLinesVisible="true" layoutX="67.0" layoutY="562.0" prefHeight="64.0" prefWidth="657.0">
+      <GridPane gridLinesVisible="true" layoutX="54.0" layoutY="578.0" prefHeight="64.0" prefWidth="692.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,18 +61,18 @@
             <Label fx:id="gantt10" prefHeight="17.0" prefWidth="68.0" textFill="#b90505" GridPane.columnIndex="9" />
          </children>
       </GridPane>
-      <Label fx:id="currentProcess" layoutX="263.0" layoutY="74.0" prefHeight="28.0" prefWidth="190.0" text=" Shortest Job First" textFill="#00d049">
+      <Label fx:id="currentProcess" layoutX="263.0" layoutY="74.0" prefHeight="28.0" prefWidth="176.0" text="Priority Scheduler" textFill="#00d049">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <GridPane layoutX="17.0" layoutY="141.0" prefHeight="357.0" prefWidth="382.0">
+      <GridPane layoutX="17.0" layoutY="173.0" prefHeight="369.0" prefWidth="633.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="0.0" prefWidth="69.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="52.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="93.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="52.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="0.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="51.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="202.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="47.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -158,7 +158,7 @@
                </font></Label>
             <Label fx:id="waitLabel1" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -166,7 +166,7 @@
             </Label>
             <Label fx:id="waitLabel2" prefHeight="23.0" prefWidth="126.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -174,7 +174,7 @@
             </Label>
             <Label fx:id="waitLabel3" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -182,7 +182,7 @@
             </Label>
             <Label fx:id="waitLabel4" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -190,7 +190,7 @@
             </Label>
             <Label fx:id="waitLabel5" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -198,7 +198,7 @@
             </Label>
             <Label fx:id="waitLabel6" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -206,7 +206,7 @@
             </Label>
             <Label fx:id="waitLabel7" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -214,7 +214,7 @@
             </Label>
             <Label fx:id="waitLabel8" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -222,7 +222,7 @@
             </Label>
             <Label fx:id="waitLabel9" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="8">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -230,7 +230,7 @@
             </Label>
             <Label fx:id="waitLabel10" prefHeight="23.0" prefWidth="171.0" text="0" textFill="#eb1212" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="50.0" />
                </GridPane.margin>
                <font>
                   <Font size="14.0" />
@@ -240,7 +240,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="taLabel2" prefHeight="17.0" prefWidth="144.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label fx:id="taLabel2" prefHeight="20.0" prefWidth="136.0" text="0" textFill="#e12d2d" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -276,18 +276,38 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField prefHeight="25.0" prefWidth="61.0" GridPane.columnIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <TextField fx:id="priority1" prefHeight="25.0" prefWidth="61.0" GridPane.columnIndex="4" />
+            <TextField fx:id="priority2" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="priority3" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="priority4" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <TextField fx:id="priority5" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="priority6" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <TextField fx:id="priority7" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <TextField fx:id="priority8" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <TextField fx:id="priority9" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <TextField fx:id="priority10" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <ComboBox fx:id="comboBox" layoutX="448.0" layoutY="76.0" onAction="#changeWindow" prefWidth="150.0" />
+      <Label layoutX="16.0" layoutY="129.0" prefHeight="28.0" prefWidth="76.0" text="Processes" textFill="#e10000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="240.0" layoutY="129.0" prefHeight="28.0" prefWidth="76.0" text="Wait Time" textFill="#e10000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="396.0" layoutY="129.0" prefHeight="28.0" prefWidth="127.0" text="TurnAround Time" textFill="#e10000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="598.0" layoutY="129.0" prefHeight="28.0" prefWidth="58.0" text="Priority" textFill="#e10000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

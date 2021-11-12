@@ -12,7 +12,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 	}
 
 	public void queue(process process) {
-		ganttCalculations newCell= new ganttCalculations(process);
+		ganttCell newCell= new ganttCell(process);
 		addCell(newCell);
 	}
 
@@ -20,7 +20,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 	public float calculateWaitTime() {
 		float waitTime=0;
 		 while(count<max) {
-			 ganttCalculations newCell= getCell();
+			 ganttCell newCell= getCell();
 			 waitTime+=newCell.getWaitTime();
 			 addCell(newCell);
 			 count++;
@@ -33,7 +33,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 	public float calculateTATime() {
 		float taTime=0;
 		 while(count<max) {
-			 ganttCalculations newCell= getCell();
+			 ganttCell newCell= getCell();
 			 taTime+=newCell.getTaTime();
 			 addCell(newCell);
 			 count++;
@@ -46,7 +46,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 	public void setTimes() {
 		int previousTATime=0;
 		while(count<max) {
-			ganttCalculations newCell=getCell();
+			ganttCell newCell=getCell();
 			if(count==0) {
 				newCell.setWaitTime(0);
 				int burstTime=newCell.getProcess().getBurstTime();
@@ -66,6 +66,7 @@ public class FirstInFirstServed extends ganttChart implements calculations{
 			count++;
 		}
 		count=0;
+		System.out.println();
 	}
 
 	public void setMax(int max) {

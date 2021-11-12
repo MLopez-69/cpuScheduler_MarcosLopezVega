@@ -278,6 +278,13 @@ public class sjfController implements Initializable{
     		break;
     	case "SJF":
     		break;
+    	case "PRIORITY":
+    		root = FXMLLoader.load(getClass().getResource("/views/priorityView.fxml"));
+            scene = new Scene(root);
+            window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+    		break;	
     	default:break;
     	}
     }

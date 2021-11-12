@@ -201,14 +201,14 @@ public class mainController implements Initializable{
 		// TODO Auto-generated method stub
 		fifo=new FirstInFirstServed(1);
 		initBoxes();
-		setLabelsFalse();
-		
+		setLabelsFalse();//this is what makes the labels and text visible or not
+		//later algorithms would simply set the text to ""
 	}
 	
 	
 	public void initBoxes() {
 		processBox.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
-		comboBox.getItems().addAll("FCFS","SJF");
+		comboBox.getItems().addAll("FCFS","SJF","PRIORITY");
 	}
 	
 	@FXML
@@ -278,6 +278,13 @@ public class mainController implements Initializable{
             window.setScene(scene);
             window.show();
     		break;
+    	case "PRIORITY":
+    		root = FXMLLoader.load(getClass().getResource("/views/priorityView.fxml"));
+            scene = new Scene(root);
+            window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+    		break;	
     	default:break;
     	}
     }

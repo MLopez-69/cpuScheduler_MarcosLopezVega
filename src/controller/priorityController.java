@@ -15,11 +15,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.ganttCell;
+import models.priorityScheduler;
 import models.process;
 import models.shortestJobFirst;
 
 public class priorityController implements Initializable{
-	
+	priorityScheduler priority;
 	
 
     @FXML
@@ -222,10 +224,11 @@ public class priorityController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		sjf=new shortestJobFirst(20);//set to 20 to allow hashing structure to hash duplicates
+		priority=new priorityScheduler(10);
 		initBoxes();
 		setLabelsFalse();
-		
+		//the priority queue uses the idea that the 
+		//smallest number has the highest priority
 	}
 	
 	
@@ -236,37 +239,53 @@ public class priorityController implements Initializable{
 	
 	@FXML
     void calculate(ActionEvent event) {
+		priority.clearPriority();
 		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
-		sjf.clear();
 		while(count<=maxInt) {
 			process newProcess= 
 			new process(getLabelText(count),getText(count));
-			sjf.addCell(newProcess);
+			priority.queue(newProcess,getPriority(count));
 			count++;
 		}
 		count=1;
 		
-		sjf.setTimes();
-		maxInt=sjf.getProcessCount(); //sets maxInt to the max Burst time
+		priority.setTimes();
 		
 		while(count<=maxInt) {
-			if(sjf.getCell(count)!=null) {
-			setWaitTimeLabel
-			(sjf.getCell(count).getProcess().getName(),sjf.getCell(count).getWaitTime());
-			
-			setTALabel
-			(sjf.getCell(count).getProcess().getName(),sjf.getCell(count).getTaTime());
-			setGantt(sjf.getCell(count).getPriority(),sjf.getCell(count).getProcess().getName());
-			}
-			
+			setWaitTimeLabel(count,priority.getWaitTime());//sets the wait time labels
+			setTALabel(count,priority.getTATime());// sets the TA time labels
+			priority.next();
 			count++;
 		}
+		
+		count=1;
+		int ganttCount=1;//serves to set the gantt chart
+		
+		while(count<=priority.getPriorityMax()){
+			// this is what is used to set the gantt chart
+			int processCount=0;	//this is used to iterate through the linked list
+			
+			while(processCount<maxInt) { //goes through linked list
+				ganttCell newCell=priority.getCell();
+				if(newCell.getPriority()==count) {
+					//if current priority equals priority count
+					
+					setGantt(ganttCount,newCell.getProcess().getName());
+					ganttCount++;
+				}
+				priority.addCell(newCell);
+				processCount++;
+			}
+			count++;
+		
+		}
+		
 		averageLabel.setText
-		(String.format("Average: %.2f", sjf.calculateWaitTime()));
+		(String.format("Average: %.2f", priority.calculateWaitTime()));
 		taLabel.setText
-		(String.format("Average: %.2f", sjf.calculateTATime()));
+		(String.format("Average: %.2f", priority.calculateTATime()));
     }
 
     @FXML
@@ -306,7 +325,14 @@ public class priorityController implements Initializable{
             window.show();
     		break;
     	case "SJF":
+    		root = FXMLLoader.load(getClass().getResource("/views/SJFView.fxml"));
+            scene = new Scene(root);
+            window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
     		break;
+    	case "PRIORITY":
+    		break;	
     	default:break;
     	}
     }
@@ -324,81 +350,102 @@ public class priorityController implements Initializable{
     	case 1:
     		p1.setVisible(isTrue); text1.setVisible(isTrue);
     		waitLabel1.setVisible(isTrue); taLabel1.setVisible(isTrue);
+    		priority1.setVisible(isTrue);
     		break;
     	case 2: 
     		p2.setVisible(isTrue); text2.setVisible(isTrue);
     		waitLabel2.setVisible(isTrue) ;taLabel2.setVisible(isTrue);
+    		priority2.setVisible(isTrue);
     		break;  	
     	case 3: 
     		p3.setVisible(isTrue); text3.setVisible(isTrue);
     		waitLabel3.setVisible(isTrue); taLabel3.setVisible(isTrue);
+    		priority3.setVisible(isTrue);
     		break;
     	case 4: 
     		p4.setVisible(isTrue); text4.setVisible(isTrue);
     		waitLabel4.setVisible(isTrue); taLabel4.setVisible(isTrue);
+    		priority4.setVisible(isTrue);
     		break; 	
     	case 5: 
     		p5.setVisible(isTrue); text5.setVisible(isTrue);
     		waitLabel5.setVisible(isTrue); taLabel5.setVisible(isTrue);
+    		priority5.setVisible(isTrue);
     		break;	
     	case 6: 
     		p6.setVisible(isTrue); text6.setVisible(isTrue);
     		waitLabel6.setVisible(isTrue); taLabel6.setVisible(isTrue);
+    		priority6.setVisible(isTrue);
     		break;
     	case 7: 
     		p7.setVisible(isTrue); text7.setVisible(isTrue);
     		waitLabel7.setVisible(isTrue); taLabel7.setVisible(isTrue);
+    		priority7.setVisible(isTrue);
     		break;
     	case 8: 
     		p8.setVisible(isTrue); text8.setVisible(isTrue);
     		waitLabel8.setVisible(isTrue); taLabel8.setVisible(isTrue);
+    		priority8.setVisible(isTrue);
     		break;
     	case 9: 
     		p9.setVisible(isTrue); text9.setVisible(isTrue);
     		waitLabel9.setVisible(isTrue); taLabel9.setVisible(isTrue);
+    		priority9.setVisible(isTrue);
     		break;
     	case 10: 
     		p10.setVisible(isTrue); text10.setVisible(isTrue);
     		waitLabel10.setVisible(isTrue); taLabel10.setVisible(isTrue);
+    		priority10.setVisible(isTrue);
     		break;
     	}
     	
     }
     
+    
     public void clearLabels() {
-		text1.clear();
-		waitLabel1.setText("0"); taLabel1.setText("0");
+    		text1.clear(); gantt1.setText("");
+    		waitLabel1.setText("0"); taLabel1.setText("0");
+    		priority1.clear();
 
-		text2.clear(); 
-		waitLabel2.setText("0"); taLabel2.setText("0");
+    		text2.clear(); gantt2.setText("");
+    		waitLabel2.setText("0"); taLabel2.setText("0");
+    		priority2.clear();
 
-		text3.clear(); 
-		waitLabel3.setText("0"); taLabel3.setText("0");
+    		text3.clear(); gantt3.setText("");
+    		waitLabel3.setText("0"); taLabel3.setText("0");
+    		priority3.clear();
 
-		text4.clear(); 
-		waitLabel4.setText("0"); taLabel4.setText("0");
-		
-		text5.clear(); 
-		waitLabel5.setText("0"); taLabel5.setText("0");
-
-		text6.clear(); 
-		waitLabel6.setText("0"); taLabel6.setText("0");
-
-		text7.clear(); 
-		waitLabel7.setText("0"); taLabel7.setText("0");
-
-		text8.clear(); 
-		waitLabel8.setText("0"); taLabel8.setText("0");
-
-		text9.clear(); 
-		waitLabel9.setText("0"); taLabel9.setText("0");
-
-		text10.clear();
-		waitLabel10.setText("0"); taLabel10.setText("0");
-		averageLabel.setText("Average:");
-		taLabel.setText("T/A:");
-		clearGantt();
-	}
+    		text4.clear(); gantt4.setText("");
+    		waitLabel4.setText("0"); taLabel4.setText("0");
+    		priority4.clear();
+    		
+    		text5.clear(); gantt5.setText("");
+    		waitLabel5.setText("0"); taLabel5.setText("0");
+    		priority5.clear();
+ 
+    		text6.clear(); gantt6.setText("");
+    		waitLabel6.setText("0"); taLabel6.setText("0");
+    		priority6.clear();
+    
+    		text7.clear(); gantt7.setText("");
+    		waitLabel7.setText("0"); taLabel7.setText("0");
+    		priority7.clear();
+ 
+    		text8.clear(); gantt8.setText("");
+    		waitLabel8.setText("0"); taLabel8.setText("0");
+    		priority8.clear();
+ 
+    		text9.clear(); gantt9.setText("");
+    		waitLabel9.setText("0"); taLabel9.setText("0");
+    		priority9.clear();
+    
+    		text10.clear(); gantt10.setText("");
+    		waitLabel10.setText("0"); taLabel10.setText("0");
+    		priority10.clear();
+    		
+    		averageLabel.setText("Average:");
+    		taLabel.setText("T/A:");
+    	}
     
     public void clearGantt() {
     	gantt1.setText("");
@@ -462,36 +509,52 @@ public class priorityController implements Initializable{
     	default:return Integer.parseInt(text1.getText());
     	}	
     }
+	
+	public int getPriority(int textNumber) {
+    	switch(textNumber) {
+    	case 1:return Integer.parseInt(priority1.getText());
+    	case 2:return Integer.parseInt(priority2.getText());
+    	case 3:return Integer.parseInt(priority3.getText());
+    	case 4:return Integer.parseInt(priority4.getText());
+    	case 5:return Integer.parseInt(priority5.getText());
+    	case 6:return Integer.parseInt(priority6.getText());
+    	case 7:return Integer.parseInt(priority7.getText());
+    	case 8:return Integer.parseInt(priority8.getText());
+    	case 9:return Integer.parseInt(priority9.getText());
+    	case 10:return Integer.parseInt(priority10.getText());
+    	default:return Integer.parseInt(priority1.getText());
+    	}	
+    }
 	//the changes below were made to acomodate for the new SJF data structure
-	public void setWaitTimeLabel(String labelNumber,int number) {
+	public void setWaitTimeLabel(int labelNumber,int number) {
 		String newString=String.format("%d", number);
     	switch(labelNumber) {
-    	case "p1":waitLabel1.setText(newString);break;
-    	case "p2":waitLabel2.setText(newString);break;
-    	case "p3":waitLabel3.setText(newString);break;
-    	case "p4":waitLabel4.setText(newString);break;
-    	case "p5":waitLabel5.setText(newString);break;
-    	case "p6":waitLabel6.setText(newString);break;
-    	case "p7":waitLabel7.setText(newString);break;
-    	case "p8":waitLabel8.setText(newString);break;
-    	case "p9":waitLabel9.setText(newString);break;
-    	case "p10":waitLabel10.setText(newString);break;
+    	case 1:waitLabel1.setText(newString);break;
+    	case 2:waitLabel2.setText(newString);break;
+    	case 3:waitLabel3.setText(newString);break;
+    	case 4:waitLabel4.setText(newString);break;
+    	case 5:waitLabel5.setText(newString);break;
+    	case 6:waitLabel6.setText(newString);break;
+    	case 7:waitLabel7.setText(newString);break;
+    	case 8:waitLabel8.setText(newString);break;
+    	case 9:waitLabel9.setText(newString);break;
+    	case 10:waitLabel10.setText(newString);break;
     	}	
     }
 	
-	public void setTALabel(String labelNumber,int number) {
+	public void setTALabel(int labelNumber,int number) {
 		String newString=String.format("%d", number);
     	switch(labelNumber) {
-    	case "p1":taLabel1.setText(newString);break;
-    	case "p2":taLabel2.setText(newString);break;
-    	case "p3":taLabel3.setText(newString);break;
-    	case "p4":taLabel4.setText(newString);break;
-    	case "p5":taLabel5.setText(newString);break;
-    	case "p6":taLabel6.setText(newString);break;
-    	case "p7":taLabel7.setText(newString);break;
-    	case "p8":taLabel8.setText(newString);break;
-    	case "p9":taLabel9.setText(newString);break;
-    	case "p10":taLabel10.setText(newString);break;
+    	case 1:taLabel1.setText(newString);break;
+    	case 2:taLabel2.setText(newString);break;
+    	case 3:taLabel3.setText(newString);break;
+    	case 4:taLabel4.setText(newString);break;
+    	case 5:taLabel5.setText(newString);break;
+    	case 6:taLabel6.setText(newString);break;
+    	case 7:taLabel7.setText(newString);break;
+    	case 8:taLabel8.setText(newString);break;
+    	case 9:taLabel9.setText(newString);break;
+    	case 10:taLabel10.setText(newString);break;
     	}	
     }
 	

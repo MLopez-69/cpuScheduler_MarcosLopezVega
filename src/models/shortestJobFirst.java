@@ -4,20 +4,20 @@ import java.util.HashMap;
 
 
 public class shortestJobFirst implements calculations{
-	private HashMap<Integer,ganttCalculations> map;
+	private HashMap<Integer,ganttCell> map;
 	private int max;
 	private int processCount; //made due to realization that the program deadlocks
 	int count;
 
 	public shortestJobFirst(int maxInt) {
-		map=new HashMap<Integer,ganttCalculations>(maxInt);
+		map=new HashMap<Integer,ganttCell>(maxInt);
 		max=0;
 		count=0;
 		processCount=1;
 	}
 	
 	public void addCell(process process) {
-		ganttCalculations newCell= new ganttCalculations(process);
+		ganttCell newCell= new ganttCell(process);
 		//newCell.setPriority(processCount);	
 		
 		setMaxIfLarger(newCell.getProcess().getBurstTime());
@@ -26,7 +26,7 @@ public class shortestJobFirst implements calculations{
 	}
 	
 	
-	public ganttCalculations getCell(int burstTime) {
+	public ganttCell getCell(int burstTime) {
 		return map.get(burstTime);
 	}
 
@@ -72,7 +72,7 @@ public class shortestJobFirst implements calculations{
 				
 			 while(programCounter<processCount) {
 				 
-				 ganttCalculations newCell=getCell(programCounter);
+				 ganttCell newCell=getCell(programCounter);
 			if(newCell.getProcess().getBurstTime()==count) {
 				newCell.setWaitTime(previousTATime);
 				previousTATime+=newCell.getProcess().getBurstTime();
