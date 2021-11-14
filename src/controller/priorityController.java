@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.ganttCell;
@@ -218,7 +219,9 @@ public class priorityController implements Initializable{
     
     @FXML
     private ComboBox<String> comboBox;
-
+    
+    @FXML
+    private TextArea textArea;
 
 
 	@Override
@@ -227,6 +230,9 @@ public class priorityController implements Initializable{
 		priority=new priorityScheduler(10);
 		initBoxes();
 		setLabelsFalse();
+		processBox.setValue(1);
+		textArea.setEditable(false);
+		textArea.setVisible(false);
 		//the priority queue uses the idea that the 
 		//smallest number has the highest priority
 	}
@@ -243,11 +249,18 @@ public class priorityController implements Initializable{
 		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
+		
+		try {
 		while(count<=maxInt) {
+			if(getText(count)>0 && getText(count)<=50) {
 			process newProcess= 
 			new process(getLabelText(count),getText(count));
 			priority.queue(newProcess,getPriority(count));
 			count++;
+			} else {
+				NumberFormatException ep= new NumberFormatException();
+				throw ep;
+			}
 		}
 		count=1;
 		
@@ -286,6 +299,14 @@ public class priorityController implements Initializable{
 		(String.format("Average: %.2f", priority.calculateWaitTime()));
 		taLabel.setText
 		(String.format("Average: %.2f", priority.calculateTATime()));
+		
+		textArea.setVisible(false);
+		}catch (NumberFormatException ep) {
+			textArea.setVisible(true);
+			textArea.setText("please enter a number from 1-50  and "+
+			"\nmake sure to set priority if not already set");
+			
+		}
     }
 
     @FXML

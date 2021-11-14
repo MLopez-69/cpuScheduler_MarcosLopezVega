@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.FirstInFirstServed;
@@ -188,6 +189,8 @@ public class sjfController implements Initializable{
     @FXML
     private ComboBox<String> comboBox;
 
+    @FXML
+    private TextArea textArea;
 
 
 	@Override
@@ -196,6 +199,8 @@ public class sjfController implements Initializable{
 		sjf=new shortestJobFirst(20);//set to 20 to allow hashing structure to hash duplicates
 		initBoxes();
 		setLabelsFalse();
+		processBox.setValue(1);
+		textArea.setVisible(false);
 		
 	}
 	
@@ -211,11 +216,18 @@ public class sjfController implements Initializable{
 		int maxInt= processBox.getValue();
 		int count=1;
 		sjf.clear();
+		
+		try {
 		while(count<=maxInt) {
+			if(getText(count)>0 && getText(count)<=50) {
 			process newProcess= 
 			new process(getLabelText(count),getText(count));
 			sjf.addCell(newProcess);
 			count++;
+			} else {
+				NumberFormatException ep= new NumberFormatException();
+				throw ep;
+			}
 		}
 		count=1;
 		
@@ -238,6 +250,13 @@ public class sjfController implements Initializable{
 		(String.format("Average: %.2f", sjf.calculateWaitTime()));
 		taLabel.setText
 		(String.format("Average: %.2f", sjf.calculateTATime()));
+		textArea.setVisible(false);
+		
+		}catch (NumberFormatException ep) {
+			textArea.setVisible(true);
+			textArea.setText("please enter a number from 1-50");
+			System.out.println("please enter a number from 1-50");
+		}
     }
 
     @FXML
@@ -250,6 +269,7 @@ public class sjfController implements Initializable{
 		}
 		averageLabel.setText("Average:");
 		taLabel.setText("T/A:");
+   
     }
     
     @FXML

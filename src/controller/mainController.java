@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.lang.instrument.IllegalClassFormatException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -194,7 +196,8 @@ public class mainController implements Initializable{
     @FXML
     private ComboBox<String> comboBox;
 
-
+    @FXML
+    private TextArea textArea;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -203,6 +206,9 @@ public class mainController implements Initializable{
 		initBoxes();
 		setLabelsFalse();//this is what makes the labels and text visible or not
 		//later algorithms would simply set the text to ""
+		processBox.setValue(1);
+		textArea.setEditable(false);
+		textArea.setVisible(false);
 	}
 	
 	
@@ -217,27 +223,43 @@ public class mainController implements Initializable{
 		clearGantt();
 		int maxInt= processBox.getValue();
 		int count=1;
-		while(count<=maxInt) {
-			process newProcess= 
-			new process(getLabelText(count),getText(count));
-			fifo.queue(newProcess);
-			count++;
-		}
-		count=1;
 		
-		fifo.setTimes();
-		
-		while(count<=maxInt) {
-			setWaitTimeLabel(count,fifo.getWaitTime());
-			setTALabel(count,fifo.getTATime());
-			setGantt(count);
-			fifo.next();
-			count++;
+		try {
+			while(count<=maxInt) {
+					if(getText(count)>0 && getText(count)<=50) {
+						process newProcess= 
+						new process(getLabelText(count),getText(count));
+						fifo.queue(newProcess);
+							count++;
+					} else {
+						NumberFormatException ep= new NumberFormatException();
+						throw ep;
+					}
+						
+					
+			}
+			count=1;
+			
+			fifo.setTimes();
+			
+			while(count<=maxInt) {
+				setWaitTimeLabel(count,fifo.getWaitTime());
+				setTALabel(count,fifo.getTATime());
+				setGantt(count);
+				fifo.next();
+				count++;
+			}
+			averageLabel.setText
+			(String.format("Average: %.2f", fifo.calculateWaitTime()));
+			taLabel.setText
+			(String.format("Average: %.2f", fifo.calculateTATime()));
+			textArea.setVisible(false);
+			
+		} catch (NumberFormatException ep) {
+			textArea.setVisible(true);
+			textArea.setText("please enter a number from 1-50");
+			System.out.println("please enter a number from 1-50");
 		}
-		averageLabel.setText
-		(String.format("Average: %.2f", fifo.calculateWaitTime()));
-		taLabel.setText
-		(String.format("Average: %.2f", fifo.calculateTATime()));
     }
 
     @FXML
